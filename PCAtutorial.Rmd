@@ -1,28 +1,53 @@
 ---
-title: "PCAtutorial"
+title: "Principal Component Analysis (PCA) Tutorial"
 author: "Amber Runyon"
 date: "11/21/2020"
-output: word_document
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+from: https://www.datacamp.com/community/tutorials/pca-analysis-r
 
 PCA allows you to see the overall "shape" of the data, identifying which samples are similar to one another and which are very different. This can enable us to identify groups of samples that are similar and work out which variables make one group different from another.
 
-```{r cars}
-summary(cars)
+The basics of PCA are as follows: you take a dataset with many variables, and you simplify that dataset by turning your original variables into a smaller number of "Principal Components", the directions where there is the most variance, the directions where the data is most spread out. We try to find the straight line that best spreads the data out when it is projected along it. This is the first principal component, the straight line that shows the most substantial variance in the data.
+
+Where your initial variables are strongly correlated with one another, you will be able to approximate most of the complexity in your dataset with just a few principal components. As you add more principal components, you summarize more and more of the original dataset. Adding additional components makes your estimate of the total dataset more accurate, but also more unwieldy.
+
+>Question: Objective is to take minimal # of components to summarize most of data. Will this work with model selection where objective is to use predetermined components and identify observations with greatest variance along those variables?<
+
+
+
+```{r load data, include=FALSE}
+# include=FALSE runs the code, but doesn’t show the code or results in the final document
+
+#include loading libraries and reading in data
+summary(mtcars)
 ```
 
-## Including Plots
+## Running PCA
+1. Make a biplot
+PCA only works with numerical variables. Exclude categorical variables from analysis(cols 8-9 in mtcars).
+1. Pass function prcomp()
+2. Set arguments center and scale = TRUE
+3. Summarize results
+4. Call str() to look at PCA object
 
-You can also embed plots, for example:
+```{r runPCA}
+mtcars.pca <- prcomp(mtcars[,c(1:7,10,11)], center = TRUE,scale. = TRUE)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+summary(mtcars.pca)
+
+str(mtcars.pca)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Plotting PCA
+
+
