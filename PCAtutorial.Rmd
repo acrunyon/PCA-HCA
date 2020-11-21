@@ -28,6 +28,7 @@ Where your initial variables are strongly correlated with one another, you will 
 # include=FALSE runs the code, but doesn’t show the code or results in the final document
 
 #include loading libraries and reading in data
+library(ggbiplot)
 summary(mtcars)
 ```
 
@@ -49,5 +50,7 @@ str(mtcars.pca)
 
 
 ## Plotting PCA
-
+```{r plotPCA}
+ggbiplot(mtcars.pca)
+```
 
