@@ -62,3 +62,4 @@ mtcars.country <- c(rep("Japan", 3), rep("US",4), rep("Europe", 7),rep("US",3), 
 
 ggbiplot(mtcars.pca,ellipse=TRUE,  labels=rownames(mtcars), groups=mtcars.country)
 ```
+>Original question still not addressed. How select observations that are most dissimilar based on specified variables?<
