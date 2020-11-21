@@ -24,7 +24,7 @@ Where your initial variables are strongly correlated with one another, you will 
 
 
 
-```{r load data, include=FALSE}
+```{r load data,include=FALSE}
 # include=FALSE runs the code, but doesn’t show the code or results in the final document
 
 #include loading libraries and reading in data
@@ -45,12 +45,20 @@ mtcars.pca <- prcomp(mtcars[,c(1:7,10,11)], center = TRUE,scale. = TRUE)
 
 summary(mtcars.pca)
 
-str(mtcars.pca)
+# str(mtcars.pca)
 ```
 
 
 ## Plotting PCA
-```{r plotPCA}
+```{r plotPCA, echo=FALSE,fig.show="hold", out.width="50%"}
 ggbiplot(mtcars.pca)
+ggbiplot(mtcars.pca, labels=rownames(mtcars))
 ```
 
+After plotting, you can put into different catgories to see how groups cluster. Here, plot origin of cars
+
+```{r grouping, echo=FALSE}
+mtcars.country <- c(rep("Japan", 3), rep("US",4), rep("Europe", 7),rep("US",3), "Europe", rep("Japan", 3), rep("US",4), rep("Europe", 3), "US", rep("Europe", 3))
+
+ggbiplot(mtcars.pca,ellipse=TRUE,  labels=rownames(mtcars), groups=mtcars.country)
+```
