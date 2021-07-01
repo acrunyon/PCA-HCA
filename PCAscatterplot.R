@@ -41,10 +41,10 @@ WICA.pca.x<-as.data.frame(WICA.pca$x)
 
 # This method doesn't return the exact models we selected,
 # but we may not have selected the most divergent models
-rownames(WICA.pca.x)[which.min(WICA.pca.Future_Means$PC1)]
-rownames(WICA.pca.x)[which.max(WICA.pca.Future_Means$PC1)]
-rownames(WICA.pca.x)[which.min(WICA.pca.Future_Means$PC2)]
-rownames(WICA.pca.x)[which.max(WICA.pca.Future_Means$PC2)]
+rownames(WICA.pca.x)[which.min(WICA.pca.x$PC1)]
+rownames(WICA.pca.x)[which.max(WICA.pca.x$PC1)]
+rownames(WICA.pca.x)[which.min(WICA.pca.xs$PC2)]
+rownames(WICA.pca.x)[which.max(WICA.pca.x$PC2)]
 
 
 ########## TEST W/ DINO DATA ###########
